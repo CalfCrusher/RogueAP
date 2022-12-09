@@ -8,15 +8,15 @@ AP_CARD="wlan1" # The device who act as AP (an Alfa card with ap capabilities)
 trap ctrl_c INT
 
 function ctrl_c() {
-    echo -e "\n\n[*] Restoring original state.."
-    # Restoring original state..
-    kill $(pidof wpa_supplicant)
-    kill $(pidof hostapd)
-    kill $(pidof dnsmasq)
+	echo -e "\n\n[*] Restoring original state.."
+    	# Restoring original state..
+    	kill $(pidof wpa_supplicant)
+    	kill $(pidof hostapd)
+    	kill $(pidof dnsmasq)
 	ip link set $AP_CARD down
 	ip link set $INTERNET_CARD down
-    iptables -F
-    echo 0 > /proc/sys/net/ipv4/ip_forward
+    	iptables -F
+    	echo 0 > /proc/sys/net/ipv4/ip_forward
 	exit 1
 }
 
@@ -58,5 +58,5 @@ echo -e "\n\n[!! RUNNING !!] .. ctrl+c to exit and clean"
 
 # Run for 2 hours. Set to your needs.
 for i in `seq 1 7200`; do
-    sleep 1
+	sleep 1
 done
